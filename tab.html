@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uz"><head><meta charset="utf-8"><title>Tab testi</title></head><body>
+<script type="module">
+// Ko'p tabli testlar uchun yordamchi sahifa (e2e-tabs.mjs ishlatadi). Alohida baza: ?db=<nom>
+import * as db from '../js/database.js';
+import * as sec from '../js/security.js';
+import * as lock from '../js/lock.js';
+const name = new URLSearchParams(location.search).get('db');
+db.useDatabase(name);
+const call = async (f) => { try { return { ok: true, value: await f() }; } catch (e) { return { ok: false, error: e.name, message: e.message }; } };
+// Ikki tab bir vaqtda commit'ga yetguncha kutadi (aniq poyga uchun).
+const barrier = () => new Promise((res) => {
+  const id = Math.random(), ch = new BroadcastChannel(`barrier-${name}`);
+  const t = setInterval(() => ch.postMessage({ id }), 40);
+  ch.onmessage = (e) => { if (e.data.id !== id) { clearInterval(t); ch.postMessage({ id }); setTimeout(res, 150); } };
+});
+// Haqiqiy lock menejeri: haqiqiy BroadcastChannel/storage/visibility/pagehide tinglovchilari bilan.
+const mgr = lock.createLockManager(); mgr.start();
+const signals = []; mgr.onLockChange((s) => signals.push(`${s.locked ? 'locked' : 'unlocked'}:${s.reason}`));
+window.api = {
+  mUnlock: (pin) => call(() => mgr.unlock(pin)), mUnlockRec: (k) => call(() => mgr.unlockWithRecovery(k)), mLock: () => mgr.lock('manual'),
+  mIsLocked: () => mgr.isLocked(), mState: () => mgr.getState(),
+  mChangePin: (o, n) => call(() => mgr.changePin(o, n)),
+  mCreate: (pin, withBarrier) => call(() => mgr.createVault(pin, withBarrier ? { beforeCommit: (a) => (a === 0 ? barrier() : undefined) } : {})),
+  seedThrottle: () => localStorage.setItem('si:throttle', JSON.stringify({ fails: 3, until: Date.now() + 10000 })), throttleRaw: () => localStorage.getItem('si:throttle'),
+  mConfirm: (k) => call(() => mgr.confirmRecovery(k)), mStartRot: (p) => call(() => mgr.startRecoveryRotation(p)), mConfirmRot: (k) => call(() => mgr.confirmRecoveryRotation(k)),
+  mThrottle: () => mgr.throttleRemaining(), signals: () => signals.slice(), resetThrottle: () => localStorage.removeItem('si:throttle'),
+  hasBC: () => typeof BroadcastChannel !== 'undefined', vis: () => document.visibilityState,
+  fakeHidden: () => { Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'hidden' }); document.dispatchEvent(new Event('visibilitychange')); },
+  fakeVisible: () => { Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'visible' }); document.dispatchEvent(new Event('visibilitychange')); },
+  create: (pin, withBarrier) => call(() => sec.createVault(pin, withBarrier ? { beforeCommit: (a) => (a === 0 ? barrier() : undefined) } : {})),
+  status: () => sec.getStatus(), unlocked: () => sec.isUnlocked(),
+  unlock: (pin) => call(() => sec.unlock(pin)), unlockRec: (k) => call(() => sec.unlockWithRecovery(k)),
+  add: (title) => call(() => db.add('tasks', { title })), all: () => call(() => db.getAll('tasks')),
+  lock: () => sec.lock(),
+};
+window.__ready = true;
+</script></body></html>

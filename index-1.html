@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="uz"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Testlar</title>
+<style>body{font:15px system-ui;padding:16px;max-width:640px;margin:auto}.ok{color:#1d7a5a}.bad{color:#b3261e}li{margin:4px 0}</style></head>
+<body><h1>Shaxsiy intizom: testlar</h1><p id="sum">Bajarilmoqda…</p><ul id="out"></ul>
+<script type="module">
+import { results, summary } from './harness.js';
+import { run as pure } from './pure.test.js';
+import { run as crypt } from './crypto.test.js';
+import { run as dbt } from './db.test.js';
+import { runPure as lockPure, runBrowser as lockBrowser } from './lock.test.js';
+import { runBrowser as tasksBrowser } from './tasks.test.js';
+import { runPure as sharedPure, runBrowser as sharedBrowser } from './shared.test.js';
+await pure(); await crypt(); await lockPure(); await dbt(); await lockBrowser(); await tasksBrowser(); await sharedPure(); await sharedBrowser();
+const s = summary();
+document.getElementById('sum').textContent = `${s.passed}/${s.total} o'tdi`;
+document.getElementById('out').innerHTML = results.map((r) => `<li class="${r.ok ? 'ok' : 'bad'}">${r.ok ? '✓' : '✗'} ${r.name}${r.error ? ' — ' + r.error : ''}</li>`).join('');
+window.__done = s;
+</script></body></html>

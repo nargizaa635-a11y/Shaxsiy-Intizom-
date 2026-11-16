@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#ffffff">
+  <title>Shaxsiy intizom</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="offline" class="offline" role="status" hidden>Internet yo'q. Ilova oflayn ishlayapti.</div>
+  <div id="lock" class="lock" hidden></div>
+  <button id="lockbtn" class="lock-btn" type="button" aria-label="Ilovani qulflash" hidden></button>
+  <div id="tbanner" class="tbanner" aria-live="polite"></div>
+  <header id="head" class="head"></header>
+  <main id="view" class="view" tabindex="-1"></main>
+  <nav id="nav" class="nav" aria-label="Asosiy navigatsiya"></nav>
+  <noscript><p style="padding:24px">Ilova ishlashi uchun JavaScript yoqilgan bo'lishi kerak.</p></noscript>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
