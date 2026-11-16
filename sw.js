@@ -1,11 +1,11 @@
 // Service Worker: ilova qobig'ini keshlaydi.
 // QOIDA: ASSETS dagi biror fayl o'zgarsa: 1) CACHE versiyasini qo'lda oshiring, 2) pastdagi ASSETS-SHA256 qatorini yangilang.
 // Yangi fayl qo'shsangiz, uni ASSETS ga ham qo'shing. `node tests/run-node.mjs` bu qoidalarni tekshiradi va kerakli SHA256 qiymatini xabarda ko'rsatadi.
-// ASSETS-SHA256: 4ec172eebfb674763f6ad753117b89789e93839d1c507f1af50fc859a409c336
-const CACHE = 'intizom-v8';
+// ASSETS-SHA256: 308f4e6e912bd7186c16ae9245f873dc7da9a15a1bb0e58f92246ea1526a2578
+const CACHE = 'intizom-v10';
 const ASSETS = [
   './', './index.html', './manifest.json', './css/style.css',
-  './js/app.js', './js/router.js', './js/database.js', './js/schema.js', './js/ui.js', './js/crypto.js', './js/security.js', './js/lock.js', './js/modules/registry.js', './js/modules/security-ui.js', './js/modules/settings.js', './js/modules/dates.js', './js/modules/sync.js', './js/modules/ui-kit.js', './js/modules/tasks-core.js', './js/modules/tasks-store.js', './js/modules/tasks.js',
+  './js/app.js', './js/router.js', './js/database.js', './js/schema.js', './js/ui.js', './js/crypto.js', './js/security.js', './js/lock.js', './js/modules/registry.js', './js/modules/security-ui.js', './js/modules/settings.js', './js/modules/dates.js', './js/modules/sync.js', './js/modules/ui-kit.js', './js/modules/tasks-core.js', './js/modules/tasks-store.js', './js/modules/tasks.js', './js/modules/habits-core.js', './js/modules/habits-store.js', './js/modules/habits.js',
   './assets/icon.svg', './assets/icon-192.png', './assets/icon-512.png', './assets/icon-maskable-512.png',
 ];
 
