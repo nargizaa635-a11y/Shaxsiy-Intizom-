@@ -6,6 +6,7 @@ import * as lock from './lock.js';
 import { runSetup, runUnlock } from './modules/security-ui.js';
 import { renderSettings, bindSettings } from './modules/settings.js';
 import { mountTasks, startTasks } from './modules/tasks.js';
+import { mountHabits, startHabits } from './modules/habits.js';
 
 const $ = (s) => document.querySelector(s);
 const MONTHS = ['yanvar', 'fevral', 'mart', 'aprel', 'may', 'iyun', 'iyul', 'avgust', 'sentabr', 'oktabr', 'noyabr', 'dekabr'];
@@ -41,6 +42,7 @@ function show(id, route) {
     main.innerHTML = renderView(id, route);
     if (id === 'sozlamalar') bindSettings(main);
     if (id === 'reja') mountTasks(main).catch((e) => { main.innerHTML = errorState(e.message); });
+    if (id === 'odatlar') mountHabits(main).catch((e) => { main.innerHTML = errorState(e.message); });
     main.focus({ preventScroll: true });
     window.scrollTo(0, 0);
   } catch (e) { main.innerHTML = errorState(e.message); }
@@ -87,7 +89,7 @@ async function gate() {
       if (!lock.canAccessPersonalPages()) { relock = true; continue; }
       root.hidden = true; root.innerHTML = '';
       const btn = $('#lockbtn'); btn.innerHTML = icon('lock', 22); btn.hidden = false;
-      startTasks(); router.start();
+      startTasks(); startHabits(); router.start();
     } while (relock);
   } catch (e) { const r = $('#lock'); r.hidden = false; r.innerHTML = `<div class="lock-card">${errorState(e.message)}</div>`; }
   finally { gating = false; }
