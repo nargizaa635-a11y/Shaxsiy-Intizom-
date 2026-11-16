@@ -157,3 +157,20 @@ body.t-form { padding-bottom: 12px; }
 .t-form .err:empty, .c-add + .err:empty { display: none; }
 .t-form .fld { gap: 4px; }
 .t-form small[hidden] { display: none; }
+/* Odatlar */
+.h-off { width: 44px; height: 44px; flex: none; display: grid; place-items: center; color: var(--ink-2); }
+.h-opt[hidden] { display: none; }
+.wk { grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.wk .seg-i span { min-height: 44px; padding: 0; font-size: .85rem; border-radius: 10px; }
+.h-nav { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.h-nav h2 { font-size: 1.05rem; text-transform: capitalize; }
+.cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin: 10px 0; }
+.cal-h { text-align: center; font-size: .72rem; color: var(--ink-2); }
+.h-cell { min-height: 40px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); font: inherit; font-size: .9rem; }
+.h-cell.blank { border: 0; background: none; }
+.h-cell.off, .h-cell.before { color: #aab7b1; background: var(--soft); border-style: dashed; }
+.h-cell.future { color: var(--ink-2); }
+.h-cell.done { background: var(--green); border-color: var(--green); color: #fff; font-weight: 600; }
+.h-cell.missed { background: #fde8e6; border-color: #f2c1bc; color: var(--danger); }
+.h-cell.pending { border: 2px solid var(--green); font-weight: 600; }
+button.h-cell { cursor: pointer; }
