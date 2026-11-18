@@ -174,3 +174,37 @@ body.t-form { padding-bottom: 12px; }
 .h-cell.missed { background: #fde8e6; border-color: #f2c1bc; color: var(--danger); }
 .h-cell.pending { border: 2px solid var(--green); font-weight: 600; }
 button.h-cell { cursor: pointer; }
+
+/* Jurnal va Loyihalar */
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.stat b.bad { color: var(--danger); }
+.j-search { margin-bottom: 4px; }
+.j-search input { min-height: 48px; font-size: 1rem; letter-spacing: normal; }
+.j-day { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin: 14px 2px 6px; font-size: .95rem; color: var(--ink-2); }
+.j-day small { font-weight: 400; font-size: .78rem; }
+.j-prev { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.j-types { grid-template-columns: repeat(2, 1fr); }
+.j-body { font-size: 1.02rem; line-height: 1.6; }
+.p-row .t-main .bar { margin-top: 6px; height: 6px; }
+.c-add .err:empty { display: none; }
+
+/* Maqsadlar */
+.g-terms .seg-i span { flex-direction: column; gap: 2px; padding: 6px 4px; text-align: center; }
+.g-terms small { font-size: .72rem; font-weight: 400; opacity: .85; }
+.g-sub { font-size: .9rem; color: var(--ink-2); margin: 10px 0 2px; }
+#j-list .t-list, #g-list .t-list { margin-bottom: 4px; }
+#j-list .t-list:last-child, #g-list .t-list:last-child { margin-bottom: 96px; }
+
+/* Bosh sahifa */
+.home-sec { margin-top: 18px; }
+.home-h { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.home-h h2 { font-size: 1.05rem; }
+.home-h a { font-size: .9rem; color: var(--green); font-weight: 600; padding: 6px 0 6px 10px; }
+.home-sec .t-list { margin-bottom: 4px; }
+.home-day { margin-top: 12px; }
+.home-day p { font-weight: 600; }
+.home-day .bar { margin-top: 8px; }
+.home-warn { margin-top: 12px; padding: 10px 14px; border-radius: 12px; background: #fdecec; color: var(--danger); font-weight: 500; }
+.home-empty, .home-more { padding: 4px 2px; }
+.home-empty a, .home-more a { color: var(--green); font-weight: 600; }
+.home-cta { margin-top: 18px; margin-bottom: 24px; display: flex; flex-direction: column; gap: 10px; }
