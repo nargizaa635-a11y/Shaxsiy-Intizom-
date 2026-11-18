@@ -3,10 +3,11 @@
 Android-first PWA: kun tartibi, odatlar, maqsadlar va rivojlanishni yagona joyda boshqarish.
 Texnologiya: HTML, CSS, vanilla JavaScript (ES modules), IndexedDB, Service Worker. Framework va build tizimi yo'q.
 
-## Holat: PIN/xavfsizlik va Vazifalar moduli
+## Holat: PIN/xavfsizlik, Tahlil, Bosh sahifa, Vazifalar, Odatlar, Jurnal, Loyihalar va Maqsadlar
 Tayyor: papka tuzilmasi, dizayn tizimi, pastki navigatsiya (5 tab), router, 13 ta bo'limning bo'sh sahifalari, IndexedDB (14 store, UUID, createdAt/updatedAt, versiyalash, migratsiya), PWA va oflayn qobig'i.
 Tayyor: shifrlash yadrosi (`crypto.js`, `security.js`, shifrlangan `database.js`), qulf yadrosi (`lock.js`), PIN interfeysi va **Vazifalar moduli** (`modules/tasks-core.js`, `tasks-store.js`, `tasks.js`) hamda ularning testlari.
-**Hali mavjud EMAS:** backup/restore, ma'lumotlarni to'liq tozalash, Android bildirishnomalari va boshqa modullar (odatlar, maqsadlar, kalendar, jurnal, statistika va hokazo).
+Tayyor: **Odatlar** (`habits-*.js`), **Jurnal** (`journal-core.js`, `journal-store.js`, `journal.js`: 4 tur, kayfiyat, qidiruv, ketma-ket kunlar) va **Loyihalar** (`projects-core.js`, `projects-store.js`, `projects.js`: holat, muddat, qadamlar va progress; qadamlar `milestones` store'ida `projectId` bilan). Tayyor: **Maqsadlar** (`goals-core.js`, `goals-store.js`, `goals.js`: qisqa/o'rta/uzoq muddat, "nima uchun" sababi, bosqichlar va progress; bosqichlar `milestones` store'ida `goalId` bilan, loyiha qadamlari bilan aralashmaydi). Tayyor: **Tahlil** (`analytics-core.js`, `analytics.js`): davr (7/30/90 kun), intizom indeksi (odatlar va vazifalar bajarilishining o'rtachasi, oldingi davr bilan taqqoslash), kunlik/haftalik bajarilish va kayfiyat grafiklari (kutubxonasiz SVG), odatlar bo'yicha foiz, xulosalar (faqat yetarli ma'lumot bo'lganda), maqsad va loyiha ko'rsatkichlari. Faqat o'qiydi. Hisob qoidalari `analytics-core.js` boshidagi izohda. Tayyor: **Bosh sahifa** (`home-core.js`, `home.js`): bugungi vazifalar va odatlar (shu yerning o'zida belgilanadi), kun foizi, muddati o'tganlar, faol maqsad va loyihalar, jurnal eslatmasi. Har manba alohida yuklanadi: biri buzilsa qolganlari ko'rinadi. Yangi modullar mavjud store'lardan foydalanadi, shuning uchun DB versiyasi o'zgarmadi (migratsiya yo'q).
+**Hali mavjud EMAS:** backup/restore, ma'lumotlarni to'liq tozalash, Android bildirishnomalari va boshqa modullar (kalendar, statistika va hokazo).
 
 ## Ishga tushirish
 ES modullar va Service Worker `file://` da ishlamaydi, HTTP kerak:
@@ -31,6 +32,7 @@ Nomi `shaxsiy-intizom`, **versiya 2** (v2 barcha indekslarni olib tashlaydi). Ba
 - Node: `node tests/run-node.mjs` (sxema, migratsiya, uuid, router, ro'yxat, sof kripto).
 - Brauzer: serverni ishga tushirib `/tests/index.html` ni oching (haqiqiy IndexedDB va vault, alohida test bazalarida; ilova ma'lumotiga tegmaydi).
 - Vazifalar: Node'da sof mantiq (`tests/tasks.test.js`), Chromium'da ma'lumotlar qatlami `/tests/index.html` da; haqiqiy ilova: `PW=<playwright/index.mjs yo'li> node tests/e2e-tasks.mjs` (~3 daq; qisman `ONLY=T4,T5`).
+- Tahlil, Bosh sahifa, Jurnal, Loyihalar va Maqsadlar: sof mantiq `tests/analytics.test.js`, `tests/home.test.js`, `tests/journal.test.js`, `tests/projects.test.js`, `tests/goals.test.js` (`node tests/run-node.mjs` ichida); haqiqiy ilova (shifrlash, qulf, qidiruv, o'chirish/bekor qilish): `PW=<playwright/index.mjs yo'li> node tests/e2e-modules.mjs`; qisman: `ONLY=T1,B1,J2,P1,G1`.
 - PIN interfeysi (haqiqiy ilova, 360x640): `PW=<playwright/index.mjs yo'li> node tests/e2e-ui.mjs` (~2 daq, real 10 s kutish bor); qisman: `ONLY=S2,S3`. Android'da qo'lda sinash: `tests/ANDROID.md`.
 - Lock yadrosi: sof testlar Node'da, IndexedDB bilan testlar `/tests/index.html` da; haqiqiy ko'p tab, BroadcastChannel'siz holat, kutish va brauzerni qayta ochish: `PW=<playwright/index.mjs yo'li> node tests/e2e-lock.mjs` (~1 daq, real 10 s kutishlar bor).
 - Ko'p tab va brauzerni qayta ochish: serverni ishga tushirib `PW=<playwright/index.mjs yo'li> node tests/e2e-tabs.mjs` (parallel vault yaratish, sahifa yangilanishi, yangi tab, doimiy profilda brauzerni yopib qayta ochish).
