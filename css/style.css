@@ -208,3 +208,27 @@ button.h-cell { cursor: pointer; }
 .home-empty, .home-more { padding: 4px 2px; }
 .home-empty a, .home-more a { color: var(--green); font-weight: 600; }
 .home-cta { margin-top: 18px; margin-bottom: 24px; display: flex; flex-direction: column; gap: 10px; }
+
+/* Tahlil */
+.a-card { margin-top: 12px; }
+.a-idx { display: flex; align-items: baseline; gap: 10px; margin: 6px 0; }
+.a-idx b { font-size: 2.8rem; line-height: 1; color: var(--green); }
+.a-idx b.bad { color: var(--danger); }
+.a-idx span { font-size: 1.05rem; font-weight: 600; color: var(--ink-2); }
+.a-note { font-size: .8rem; margin-top: 6px; }
+.ch { width: 100%; height: auto; display: block; }
+.ch-plan { fill: var(--green-soft); stroke: var(--line); stroke-width: .5; }
+.ch-done { fill: var(--green); }
+.ch-axis { stroke: var(--line); stroke-width: 1; }
+.ch-lbl { fill: var(--ink-2); font-size: 9px; }
+.ch-line { fill: none; stroke: var(--green); stroke-width: 2; stroke-linejoin: round; }
+.ch-dot { fill: var(--green); }
+.a-legend { display: flex; align-items: center; gap: 6px; font-size: .8rem; color: var(--ink-2); margin-top: 4px; }
+.lg { display: inline-block; width: 10px; height: 10px; border-radius: 3px; }
+.lg-plan { background: var(--green-soft); border: 1px solid var(--line); }
+.lg-done { background: var(--green); margin-left: 8px; }
+.a-pct { margin-left: auto; padding-left: 10px; font-size: .95rem; }
+.a-ins { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.a-ins li { padding: 8px 12px; border-radius: 10px; background: #f3f7f5; border-left: 4px solid var(--line); }
+.a-ins .ins-good { border-left-color: var(--green); }
+.a-ins .ins-warn { border-left-color: var(--danger); }
