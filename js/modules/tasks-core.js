@@ -110,7 +110,7 @@ export function occurrencesBetween(t, from, to, limit = 400) {
 }
 
 // ---------- Hodisa (occurrence) qatorlari ----------
-function occDone(t, idx, date) {
+export function occDone(t, idx, date) {
   if (!isRecurring(t)) return t.status === 'done' && date === t.date ? { done: true, doneAt: t.doneAt || null } : { done: false, doneAt: null };
   const m = idx.get(t.id); return m && m.has(date) ? { done: true, doneAt: m.get(date) || null } : { done: false, doneAt: null };
 }
