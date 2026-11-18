@@ -11,6 +11,7 @@ import { mountJournal, startJournal } from './modules/journal.js';
 import { mountProjects, startProjects } from './modules/projects.js';
 import { mountGoals, startGoals } from './modules/goals.js';
 import { mountHome, startHome } from './modules/home.js';
+import { mountAnalytics, startAnalytics } from './modules/analytics.js';
 
 const $ = (s) => document.querySelector(s);
 const MONTHS = ['yanvar', 'fevral', 'mart', 'aprel', 'may', 'iyun', 'iyul', 'avgust', 'sentabr', 'oktabr', 'noyabr', 'dekabr'];
@@ -45,6 +46,7 @@ function show(id, route) {
   try {
     main.innerHTML = renderView(id, route);
     if (id === 'sozlamalar') bindSettings(main);
+    if (id === 'tahlil') mountAnalytics(main).catch((e) => { main.innerHTML = errorState(e.message); });
     if (id === 'bosh') mountHome(main).catch((e) => { main.innerHTML = errorState(e.message); });
     if (id === 'reja') mountTasks(main).catch((e) => { main.innerHTML = errorState(e.message); });
     if (id === 'odatlar') mountHabits(main).catch((e) => { main.innerHTML = errorState(e.message); });
@@ -97,7 +99,7 @@ async function gate() {
       if (!lock.canAccessPersonalPages()) { relock = true; continue; }
       root.hidden = true; root.innerHTML = '';
       const btn = $('#lockbtn'); btn.innerHTML = icon('lock', 22); btn.hidden = false;
-      startTasks(); startHabits(); startJournal(); startProjects(); startGoals(); startHome(); router.start();
+      startTasks(); startHabits(); startJournal(); startProjects(); startGoals(); startHome(); startAnalytics(); router.start();
     } while (relock);
   } catch (e) { const r = $('#lock'); r.hidden = false; r.innerHTML = `<div class="lock-card">${errorState(e.message)}</div>`; }
   finally { gating = false; }
