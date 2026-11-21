@@ -1,11 +1,11 @@
 // Service Worker: ilova qobig'ini keshlaydi.
 // QOIDA: ASSETS dagi biror fayl o'zgarsa: 1) CACHE versiyasini qo'lda oshiring, 2) pastdagi ASSETS-SHA256 qatorini yangilang.
 // Yangi fayl qo'shsangiz, uni ASSETS ga ham qo'shing. `node tests/run-node.mjs` bu qoidalarni tekshiradi va kerakli SHA256 qiymatini xabarda ko'rsatadi.
-// ASSETS-SHA256: 3ce0258d7a36ddc722ff575bca1dd3ba94160ed0e42c09ccaedf53853de1b0e6
-const CACHE = 'intizom-v14';
+// ASSETS-SHA256: d7bba049989806b8963bbd2df87f827be35642242062b829536e7d01f45ac4bb
+const CACHE = 'intizom-v15';
 const ASSETS = [
   './', './index.html', './manifest.json', './css/style.css',
-  './js/app.js', './js/router.js', './js/database.js', './js/schema.js', './js/ui.js', './js/crypto.js', './js/security.js', './js/lock.js', './js/modules/registry.js', './js/modules/security-ui.js', './js/modules/settings.js', './js/modules/dates.js', './js/modules/sync.js', './js/modules/ui-kit.js', './js/modules/tasks-core.js', './js/modules/tasks-store.js', './js/modules/tasks.js', './js/modules/habits-core.js', './js/modules/habits-store.js', './js/modules/habits.js', './js/modules/journal-core.js', './js/modules/journal-store.js', './js/modules/journal.js', './js/modules/projects-core.js', './js/modules/projects-store.js', './js/modules/projects.js', './js/modules/goals-core.js', './js/modules/goals-store.js', './js/modules/goals.js', './js/modules/home-core.js', './js/modules/home.js', './js/modules/analytics-core.js', './js/modules/analytics.js',
+  './js/app.js', './js/router.js', './js/database.js', './js/schema.js', './js/ui.js', './js/crypto.js', './js/security.js', './js/lock.js', './js/modules/registry.js', './js/modules/security-ui.js', './js/modules/settings.js', './js/modules/dates.js', './js/modules/sync.js', './js/modules/ui-kit.js', './js/modules/tasks-core.js', './js/modules/tasks-store.js', './js/modules/tasks.js', './js/modules/habits-core.js', './js/modules/habits-store.js', './js/modules/habits.js', './js/modules/journal-core.js', './js/modules/journal-store.js', './js/modules/journal.js', './js/modules/projects-core.js', './js/modules/projects-store.js', './js/modules/projects.js', './js/modules/goals-core.js', './js/modules/ibodat-core.js', './js/modules/ibodat-store.js', './js/modules/ibodat.js', './js/modules/goals-store.js', './js/modules/goals.js', './js/modules/home-core.js', './js/modules/home.js', './js/modules/analytics-core.js', './js/modules/analytics.js',
   './assets/icon.svg', './assets/icon-192.png', './assets/icon-512.png', './assets/icon-maskable-512.png',
 ];
 
