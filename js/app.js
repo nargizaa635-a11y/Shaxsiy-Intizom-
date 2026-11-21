@@ -10,6 +10,7 @@ import { mountHabits, startHabits } from './modules/habits.js';
 import { mountJournal, startJournal } from './modules/journal.js';
 import { mountProjects, startProjects } from './modules/projects.js';
 import { mountGoals, startGoals } from './modules/goals.js';
+import { mountIbodat, startIbodat } from './modules/ibodat.js';
 import { mountHome, startHome } from './modules/home.js';
 import { mountAnalytics, startAnalytics } from './modules/analytics.js';
 
@@ -53,6 +54,7 @@ function show(id, route) {
     if (id === 'jurnal') mountJournal(main).catch((e) => { main.innerHTML = errorState(e.message); });
     if (id === 'loyihalar') mountProjects(main).catch((e) => { main.innerHTML = errorState(e.message); });
     if (id === 'maqsadlar') mountGoals(main).catch((e) => { main.innerHTML = errorState(e.message); });
+    if (id === 'ibodat') mountIbodat(main).catch((e) => { main.innerHTML = errorState(e.message); });
     main.focus({ preventScroll: true });
     window.scrollTo(0, 0);
   } catch (e) { main.innerHTML = errorState(e.message); }
@@ -99,7 +101,7 @@ async function gate() {
       if (!lock.canAccessPersonalPages()) { relock = true; continue; }
       root.hidden = true; root.innerHTML = '';
       const btn = $('#lockbtn'); btn.innerHTML = icon('lock', 22); btn.hidden = false;
-      startTasks(); startHabits(); startJournal(); startProjects(); startGoals(); startHome(); startAnalytics(); router.start();
+      startTasks(); startHabits(); startJournal(); startProjects(); startGoals(); startIbodat(); startHome(); startAnalytics(); router.start();
     } while (relock);
   } catch (e) { const r = $('#lock'); r.hidden = false; r.innerHTML = `<div class="lock-card">${errorState(e.message)}</div>`; }
   finally { gating = false; }
