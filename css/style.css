@@ -232,3 +232,12 @@ button.h-cell { cursor: pointer; }
 .a-ins li { padding: 8px 12px; border-radius: 10px; background: #f3f7f5; border-left: 4px solid var(--line); }
 .a-ins .ins-good { border-left-color: var(--green); }
 .a-ins .ins-warn { border-left-color: var(--danger); }
+/* Ibodat */
+.i-priv { background: var(--soft); }
+.i-pr { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin: 8px 0; }
+.i-p { min-height: 48px; padding: 0 2px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); font: inherit; font-size: .82rem; cursor: pointer; }
+.i-p[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: #fff; font-weight: 600; }
+.i-tap { display: grid; place-items: center; width: min(70vw, 240px); aspect-ratio: 1; margin: 12px auto; border-radius: 50%; border: 3px solid var(--green); background: #fff; color: var(--green); font: inherit; font-size: 3rem; font-weight: 700; cursor: pointer; touch-action: manipulation; user-select: none; -webkit-user-select: none; }
+.i-tap:active { background: var(--green-soft); }
+.i-ctl { display: grid; grid-template-columns: 1fr 2fr; gap: 8px; margin: 8px 0; }
+.i-ctl .btn { margin-top: 0; }
