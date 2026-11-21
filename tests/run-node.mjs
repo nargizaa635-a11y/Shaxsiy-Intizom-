@@ -6,6 +6,7 @@ import { runPure as lockPure } from './lock.test.js';
 import { runPure as tasksPure } from './tasks.test.js';
 import { runPure as sharedPure } from './shared.test.js';
 import { runPure as habitsPure } from './habits.test.js';
+import { runPure as ibodatPure } from './ibodat.test.js';
 import fs from 'node:fs'; import path from 'node:path'; import crypto from 'node:crypto'; import { fileURLToPath } from 'node:url';
 
 // ---------- Service Worker tekshiruvi: versiya va keshlanadigan fayllar ro'yxati ----------
@@ -50,7 +51,7 @@ export async function swChecks() {
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  await pure(); await crypt(); await lockPure(); await tasksPure(); await sharedPure(); await habitsPure(); await swChecks();
+  await pure(); await crypt(); await lockPure(); await tasksPure(); await sharedPure(); await habitsPure(); await ibodatPure(); await swChecks();
   for (const r of results) console.log(`${r.ok ? 'OK  ' : 'FAIL'} ${r.name}${r.error ? ' — ' + r.error : ''}`);
   const s = summary(); console.log(`\n${s.passed}/${s.total} o'tdi`);
   process.exit(s.failed.length ? 1 : 0);

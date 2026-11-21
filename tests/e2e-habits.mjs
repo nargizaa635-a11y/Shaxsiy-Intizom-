@@ -34,8 +34,8 @@ try {
     check('[ro\'yxat] bo\'sh holat, FAB, 3 ta filtr, sarlavha "Odatlar"', (await p.textContent('.state h2')).includes("hali yo'q") && await visible(p, '#h-new') && (await p.$$eval('.chip', (e) => e.map((x) => x.textContent))).join() === 'Barchasi,Bugun,Arxiv' && (await p.textContent('h1')) === 'Odatlar');
     check('[ro\'yxat] ko\'rsatkichlar: 0/0, streak 0, foiz "—" (soxta foiz yo\'q), faol 0; progress yo\'q', (await p.textContent('#h-today')) === '0/0' && (await p.textContent('#h-streak')) === '0' && (await p.textContent('#h-rate')) === '—' && (await p.textContent('#h-active')) === '0' && !(await visible(p, '.bar')));
     check('[ro\'yxat] navigatsiyada "Boshqalar" faol, gorizontal aylantirish yo\'q', (await p.$eval('.nav-item.on', (e) => e.textContent)) === 'Boshqalar' && await noOverflow(p));
-    let keys = []; for (let i = 0; i < 24 && !keys.length; i++) { keys = await ev(p, () => caches.open('intizom-v10').then((k) => k.keys()).then((r) => r.map((x) => new URL(x.url).pathname)).catch(() => [])); if (!keys.length) await p.waitForTimeout(250); }
-    check('[SW] intizom-v10 keshida odatlar fayllari bor', ['habits-core.js', 'habits-store.js', 'habits.js'].every((f) => keys.some((k) => k.endsWith(`/js/modules/${f}`))), keys.join());
+    let keys = []; for (let i = 0; i < 24 && !keys.length; i++) { keys = await ev(p, () => caches.keys().then((ks) => caches.open(ks.find((k) => /^intizom-v\d+$/.test(k)) || '-')).then((k) => k.keys()).then((r) => r.map((x) => new URL(x.url).pathname)).catch(() => [])); if (!keys.length) await p.waitForTimeout(250); }
+    check('[SW] joriy kesh (intizom-v<son>) ichida odatlar fayllari bor', ['habits-core.js', 'habits-store.js', 'habits.js'].every((f) => keys.some((k) => k.endsWith(`/js/modules/${f}`))), keys.join());
     await ctx.close();
   });
 
